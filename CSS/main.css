@@ -1,1 +1,54 @@
+body
+{
+	background-color: #eeeeee;
+	font-family: "Lucida Sans Unicode";
+}
 
+.to_be_inline
+{
+	display: inline-block;
+}
+
+textarea
+{
+	height: 200px;
+}
+
+input.dropdown_main
+{
+	font-size: 20px;
+}
+
+div.dropdown_menu
+{
+	display: none;
+	position: absolute;
+}
+
+input.dropdown_option
+{
+	border: none;
+	display: block;
+	width: 100%;
+	font-size: 15px;
+}
+
+input.dropdown_option:hover
+{
+	background-color: powderblue;
+}
+
+input.dropdown_main,
+div.dropdown_menu,
+input.dropdown_option
+{
+	font-family: "Lucida Sans Unicode";
+}
+
+input.dropdown_main,
+div.dropdown_menu,
+input.dropdown_option,
+textarea
+{
+	width: 400px;
+}

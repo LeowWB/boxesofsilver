@@ -6,13 +6,78 @@
 		<script src="scripts/main.js"></script>
 	</head>
 	<body>
+	
 		<header>
 			<h1>Boxes of Silver</h1>
 		</header>
 		
-		<textarea></textarea>
-		<input type="button" value=">>>">
-		<textarea></textarea>
+		<div class="to_be_inline">
 		
+			<!-- is there a better way to do this that involves less repetition? -->
+			<div class="dropdown_entire">
+				<input id="dropdown_b0" type="button" class="dropdown_main" onClick="toggleDropdown(0)" value="C">
+				<div id="dropdown0" class="dropdown_menu">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'C')" value="C">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'C#')" value="C#">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'D')" value="D">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'D# (E♭')" value="D# (E♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'E')" value="E">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'F')" value="F">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'F#')" value="F#">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'G')" value="G">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'G# (A♭)')" value="G# (A♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'A')" value="A">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'A# (B♭)')" value="A# (B♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'B')" value="B">
+				</div>
+			</div>
+			
+			<textarea id="input_textarea"></textarea>
+		</div>
+		
+		<input class="to_be_inline" type="button" value=">>>" onClick="convert()">
+		
+		<div class="to_be_inline">
+		
+			<!-- this is almost (but not quite) an exact copy of the other dropdown box. is there a better way to do this? -->
+			<div class="dropdown_entire">
+				<input id="dropdown_b1" type="button" class="dropdown_main" onClick="toggleDropdown(1)" value="C">
+				<div id="dropdown1" class="dropdown_menu">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'C')" value="C">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'C#')" value="C#">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'D')" value="D">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'D# (E♭)')" value="D# (E♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'E')" value="E">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'F')" value="F">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'F#')" value="F#">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'G')" value="G">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'G# (A♭)')" value="G# (A♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'A')" value="A">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'A# (B♭)')" value="A# (B♭)">
+					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'B')" value="B">
+				</div>
+			</div>
+			
+			<textarea id="output_textarea" readonly></textarea>
+		</div>
+		
+		<div>
+			<p>
+				e.g: c# C# C#!
+				<br></br>
+				doesn't work if range of either side exceeds 3 octaves
+				<br></br>
+				don't put exclamation mark before hash
+				<br></br>
+				don't put flat
+				<br></br>
+				don't try to be funny and put lowercase b and tell me it's flat
+				<br></br>
+				maybe should make auto detect key one day
+				<br></br>
+				thanks
+				<br></br>
+			</p>
+		</div>
 	</body>
 </html>
