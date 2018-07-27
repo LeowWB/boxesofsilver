@@ -1,3 +1,9 @@
+/*
+	add all event listeners programatically
+	check out html select tag
+	improve error alert messages
+*/
+
 let dropdownIsVisible = [false, false];
 
 /*
@@ -7,8 +13,8 @@ let dropdownIsVisible = [false, false];
 function convert()
 {
 	/*
-		i		input (left side)
-		o		output (right side)
+		i_		input (left side)
+		o_		output (right side)
 		ta		textarea
 		dd		dropdown (only refers to the main button of the dropdown (class is dropdown_main))
 	*/
@@ -25,12 +31,12 @@ function convert()
 	
 	/*
 		str		string in textarea
-		key_str	musical key, which we get from the dd button's text
+		keyStr	musical key, which we get from the dd button's text
 	*/
 	let i_str = i_ta.value;
 	let o_str = "";
-	let i_key_str = i_dd.value[0] + (i_dd.value[1] === "#"? "#":"");
-	let o_key_str = o_dd.value[0] + (o_dd.value[1] === "#"? "#":"");
+	let i_keyStr = i_dd.value[0] + (i_dd.value[1] === "#"? "#":"");
+	let o_keyStr = o_dd.value[0] + (o_dd.value[1] === "#"? "#":"");
 	
 	/*
 		dictionary object that maps keys to numbers (for easy calculations).
@@ -56,17 +62,17 @@ function convert()
 	};
 	
 	/*
-		key_shift	number variable representing how much we adjust the values in i_notes by
+		keyShift	number variable representing how much we adjust the values in i_notes by
 		i_notes		array of input musical notes converted to numbers
 		rejects		stuff that we couldn't parse
 	*/
-	let key_shift = keyToNum[o_key_str] - keyToNum[i_key_str];
+	let keyShift = keyToNum[o_keyStr] - keyToNum[i_keyStr];
 	let i_notes = [];
 	let rejects = "";
 	
-	const SPACE_NUM = -9000;
-	const N_NUM = -9001;
-	const TAB_NUM = -9002;
+	const SPACE_NUM = Symbol(-9000);
+	const N_NUM = Symbol(-9001);
+	const TAB_NUM = Symbol(-9002);
 	
 	for (let i = 0; i < i_str.length; i++)
 	{
@@ -140,12 +146,14 @@ function convert()
 		if (i === N_NUM || i === SPACE_NUM || i === TAB_NUM)
 			return i;
 		else
-			return i + key_shift;
+			return i + keyShift;
 	});
-	
 	
 	let numToNote = 
 	{
+		N_NUM: "\n",
+		SPACE_NUM: " ",
+		TAB_NUM: "\t",
 		0: "c",
 		2: "d",
 		4: "e",
@@ -159,10 +167,7 @@ function convert()
 		17: "F",
 		19: "G",
 		21: "A",
-		23: "B",
-		N_NUM: "\n",
-		SPACE_NUM: " ",
-		TAB_NUM: "\t"
+		23: "B"
 	};
 	
 	//if this boolean is true, something is wrong with the input (or the code but probably the input)
@@ -170,38 +175,52 @@ function convert()
 	
 	o_notes.forEach((n)=>
 	{
-		let nextStr = numToNote[n];
+		//note that the below commented line would output "false", hence the need for the inelegant if-else blocks following
+		//console.log(numToNote[N_NUM] === numToNote.N_NUM);
 		
-		if (nextStr === undefined)
+		let nextStr;
+		
+		if (n === SPACE_NUM)
+			nextStr = numToNote.SPACE_NUM;
+		else if (n === N_NUM)
+			nextStr = numToNote.N_NUM;
+		else if (n === TAB_NUM)
+			nextStr = numToNote.TAB_NUM;
+		else
 		{
-			nextStr = numToNote[n-12];
+			nextStr = numToNote[n];
 			
 			if (nextStr === undefined)
 			{
-				nextStr = numToNote[n-1];
+				nextStr = numToNote[n-12];
 				
 				if (nextStr === undefined)
 				{
-					nextStr = numToNote[n-13];
+					nextStr = numToNote[n-1];
 					
 					if (nextStr === undefined)
 					{
-						outOfRangeFlag = true;
-						o_str += "?";
+						nextStr = numToNote[n-13];
+						
+						if (nextStr === undefined)
+						{
+							outOfRangeFlag = true;
+							nextStr = "?";
+						}
+						else
+						{
+							nextStr += "#!";
+						}
 					}
 					else
 					{
-						o_str += nextStr + "#!";
+						nextStr += "#";
 					}
 				}
 				else
 				{
-					o_str += nextStr + "#";
+					nextStr += "!";
 				}
-			}
-			else
-			{
-				o_str += nextStr + "!";
 			}
 		}
 		
