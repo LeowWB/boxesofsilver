@@ -1,10 +1,31 @@
 /*
 	add all event listeners programatically
 	check out html select tag
-	improve error alert messages
 */
 
 let dropdownIsVisible = [false, false];
+
+
+const numToNote = 
+{
+	N_NUM: "\n",
+	SPACE_NUM: " ",
+	TAB_NUM: "\t",
+	0: "c",
+	2: "d",
+	4: "e",
+	5: "f",
+	7: "g",
+	9: "a",
+	11: "b",
+	12: "C",
+	14: "D",
+	16: "E",
+	17: "F",
+	19: "G",
+	21: "A",
+	23: "B"
+};
 
 /*
 	function activates when you click the button between the two textareas (as of now text is ">>>"
@@ -78,65 +99,42 @@ function convert()
 	{
 		switch (i_str[i])
 		{
-			case "c":
-				i_notes.push(0);
-				break;
-			case "d":
-				i_notes.push(2);
-				break;
-			case "e":
-				i_notes.push(4);
-				break;
-			case "f":
-				i_notes.push(5);
-				break;
-			case "g":
-				i_notes.push(7);
-				break;
-			case "a":
-				i_notes.push(9);
-				break;
-			case "b":
-				i_notes.push(11);
-				break;
-			case "C":
-				i_notes.push(12);
-				break;
-			case "D":
-				i_notes.push(14);
-				break;
-			case "E":
-				i_notes.push(16);
-				break;
-			case "F":
-				i_notes.push(17);
-				break;
-			case "G":
-				i_notes.push(19);
-				break;
-			case "A":
-				i_notes.push(21);
-				break;
-			case "B":
-				i_notes.push(23);
-				break;
 			case "#":
 				i_notes[i_notes.length-1]++;
 				break;
 			case "!":
 				i_notes[i_notes.length-1] += 12;
 				break;
-			case "\n":
-				i_notes.push(N_NUM);
-				break;
 			case " ":
-				i_notes.push(SPACE_NUM);
+				i_notes.push(SPACE_NUM);	//cannot put these in for-loop since numToNote[SPACE_NUM] === undefined
 				break;
 			case "\t":
 				i_notes.push(TAB_NUM);
 				break;
+			case "\n":
+				i_notes.push(N_NUM);
+				break;
 			default:
-				rejects += i_str[i] + "\n";
+				
+				let rejectFlag = true;
+				let ntnKeys = Object.keys(numToNote);
+				let k;
+				
+				for (let j = 0; j < ntnKeys.length; j++)	//for-loop as opposed to forEach because break cannot be called in forEach arg method
+				{
+					k = ntnKeys[j];
+					
+					if (numToNote[k] === i_str[i])
+					{
+						rejectFlag = false;
+						i_notes.push(parseInt(k));
+						break;
+					}
+				}
+				
+				if (rejectFlag)
+					rejects += i_str[i] + "\n";
+				
 				break;
 		}
 	}
@@ -148,27 +146,6 @@ function convert()
 		else
 			return i + keyShift;
 	});
-	
-	let numToNote = 
-	{
-		N_NUM: "\n",
-		SPACE_NUM: " ",
-		TAB_NUM: "\t",
-		0: "c",
-		2: "d",
-		4: "e",
-		5: "f",
-		7: "g",
-		9: "a",
-		11: "b",
-		12: "C",
-		14: "D",
-		16: "E",
-		17: "F",
-		19: "G",
-		21: "A",
-		23: "B"
-	};
 	
 	//if this boolean is true, something is wrong with the input (or the code but probably the input)
 	let outOfRangeFlag = false;
@@ -231,15 +208,15 @@ function convert()
 	
 	if (rejects !== "")
 	{
-		let alertMsg = "Conversion complete, but there was some stuff we couldn't parse. The issues are:\n\n" + rejects;
+		let alertMsg = "Conversion complete. The following input characters couldn't be parsed:\n\n" + rejects;
 		
 		if (outOfRangeFlag)
-			alertMsg += "\n\nAdditionally, some items in the input were parse-able but out of range. Those are marked with question marks. Please know that we don't accept anything below 'c' or above 'B#!'.";
+			alertMsg += "\n\nAdditionally, some input items were out of range. They have been marked with question marks in the output.";
 		
 		alert(alertMsg);
 	}
 	else if (outOfRangeFlag)
-		alert("Conversion complete. Some items in the input were parse-able but out of range. Those are marked with question marks. Please know that we don't accept anything below 'c' or above 'B#!'.");
+		alert("Conversion complete. Some input items were out of range. They have been marked with question marks in the output.");
 }
 
 //makes dropdown either appear or disappear. parameter indicates which dropdown is affected.
