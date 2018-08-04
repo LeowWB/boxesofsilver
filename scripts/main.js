@@ -265,3 +265,15 @@ function dropdownOptionClicked(whichDropdown, whichButton)
 	dropdownMain.value = whichButton;
 	toggleDropdown(whichDropdown);
 }
+
+
+
+
+/*
+	keep this code at the bottom of the js file.
+	code executes when window is fully loaded, i.e html elements have been created and getElementById won't return null.
+*/
+window.onload = ()=>
+{
+	document.getElementById("convert_btn").addEventListener("click", convert);
+};
