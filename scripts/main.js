@@ -27,8 +27,8 @@ const numToNote =
 	23: "B"
 };
 
-
 const numToNoteKeys = Object.keys(numToNote);
+
 /*
 	function activates when you click the button between the two textareas (as of now text is ">>>"
 	but might change later). this function handles all the good stuff. 
@@ -117,13 +117,18 @@ function convert()
 				i_notes.push(N_NUM);
 				break;
 			default:
-                let k= numToNoteKeys.find(key => numToNote[key] === i_str[i]);
-                if (k === undefined) {
-                    rejects += i_str[i] + "\n";
-                } else {
-                    i_notes.push(Number(k));
-                }
-                break;
+                let k = numToNoteKeys.find(key => numToNote[key] === i_str[i]);
+				
+				if (k === undefined)
+				{
+					rejects += i_str[i] + "\n";
+				}
+				else
+				{
+					i_notes.push(Number(k));
+				}
+				
+				break;
 		}
 	}
 	
