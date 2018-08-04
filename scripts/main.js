@@ -1,11 +1,34 @@
 /*
-	add all event listeners programatically
-	check out html select tag
+	dictionary object that maps keys to numbers (for easy calculations).
+	
+	NOTE TO SELF: TODO: NTS:
+	if it's found that e is actually below f then should change accordingly. make
+	sure code still works because i haven't confirmed it does.
 */
+const keyToNum = 
+{
+	"C": 0,
+	"C#": 1,
+	"D": 2,
+	"D# (E♭)": 3,
+	"E": 4,
+	"F": -7,
+	"F#": -6,
+	"G": -5,
+	"G# (A♭)": -4,
+	"A": -3,
+	"A# (B♭)": -2,
+	"B": -1
+};
 
-let dropdownIsVisible = [false, false];
+const keyToNumKeys = Object.keys(keyToNum);
 
 
+
+
+/*
+	dictionary object. used in calculations.
+*/
 const numToNote = 
 {
 	N_NUM: "\n",
@@ -29,6 +52,8 @@ const numToNote =
 
 const numToNoteKeys = Object.keys(numToNote);
 
+
+
 /*
 	function activates when you click the button between the two textareas (as of now text is ">>>"
 	but might change later). this function handles all the good stuff. 
@@ -39,12 +64,12 @@ function convert()
 		i_		input (left side)
 		o_		output (right side)
 		ta		textarea
-		dd		dropdown (only refers to the main button of the dropdown (class is dropdown_main))
+		dd		dropdown (html select tag)
 	*/
 	let i_ta = document.getElementById("input_textarea");
 	let o_ta = document.getElementById("output_textarea");
-	let i_dd = document.getElementById("dropdown_b0");
-	let o_dd = document.getElementById("dropdown_b1");
+	let i_dd = document.getElementById("dropdown_0");
+	let o_dd = document.getElementById("dropdown_1");
 	
 	if (i_ta === null || o_ta === null || i_dd === null || o_dd === null)
 	{
@@ -54,35 +79,12 @@ function convert()
 	
 	/*
 		str		string in textarea
-		keyStr	musical key, which we get from the dd button's text
+		keyStr	musical key, which we get from the dd
 	*/
 	let i_str = i_ta.value;
 	let o_str = "";
-	let i_keyStr = i_dd.value[0] + (i_dd.value[1] === "#"? "#":"");
-	let o_keyStr = o_dd.value[0] + (o_dd.value[1] === "#"? "#":"");
-	
-	/*
-		dictionary object that maps keys to numbers (for easy calculations).
-		
-		NOTE TO SELF: TODO: NTS:
-		if it's found that e is actually below f then should change accordingly. make
-		sure code still works because i haven't confirmed it does.
-	*/
-	let keyToNum = 
-	{
-		"F": -7,
-		"F#": -6,
-		"G": -5,
-		"G#": -4,
-		"A": -3,
-		"A#": -2,
-		"B": -1,
-		"C": 0,
-		"C#": 1,
-		"D": 2,
-		"D#": 3,
-		"E": 4
-	};
+	let i_keyStr = i_dd.value;
+	let o_keyStr = o_dd.value;
 	
 	/*
 		keyShift	number variable representing how much we adjust the values in i_notes by
@@ -212,59 +214,6 @@ function convert()
 		alert("Conversion complete. Some input items were out of range. They have been marked with question marks in the output.");
 }
 
-//makes dropdown either appear or disappear. parameter indicates which dropdown is affected.
-function toggleDropdown(whichDropdown)
-{
-	let menu;
-	
-	if (whichDropdown === 0)
-	{
-		menu = document.getElementById("dropdown0");
-	}
-	else if (whichDropdown === 1)
-	{
-		menu = document.getElementById("dropdown1");
-	}
-	else
-	{
-		console.log("which drop down");
-		return;
-	}
-	
-	if (dropdownIsVisible[whichDropdown])
-	{
-		menu.style.display = "none";
-	}
-	else
-	{
-		menu.style.display = "block";
-	}
-	
-	dropdownIsVisible[whichDropdown] = !dropdownIsVisible[whichDropdown];
-}
-
-//function activates when an option from a dropdown is clicked.
-function dropdownOptionClicked(whichDropdown, whichButton)
-{
-	let dropdownMain;
-	
-	if (whichDropdown === 0)
-	{
-		dropdownMain = document.getElementById("dropdown_b0");
-	}
-	else if (whichDropdown === 1)
-	{
-		dropdownMain = document.getElementById("dropdown_b1");
-	}
-	else
-	{
-		console.log("which drop down");
-		return;
-	}
-	
-	dropdownMain.value = whichButton;
-	toggleDropdown(whichDropdown);
-}
 
 
 
@@ -275,5 +224,14 @@ function dropdownOptionClicked(whichDropdown, whichButton)
 */
 window.onload = ()=>
 {
+	//add eventlistener to that button between the two textareas (the one that starts the conversion process).
 	document.getElementById("convert_btn").addEventListener("click", convert);
+	
+	
+	//populates html select dropdown boxes via innerhtml
+	let dropdownInner = "<option ";
+	keyToNumKeys.forEach(key => dropdownInner += "value='" + key + "'>" + key + "</option><option ");
+	dropdownInner = dropdownInner.slice(0,-8);
+	document.getElementById("dropdown_0").innerHTML = dropdownInner;
+	document.getElementById("dropdown_1").innerHTML = dropdownInner;
 };
