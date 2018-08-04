@@ -11,59 +11,18 @@
 			<h1>Boxes of Silver</h1>
 		</header>
 		
-		<div class="to_be_inline">
-		
-			<!-- is there a better way to do this that involves less repetition? -->
-			<!--div class="dropdown_entire">
-				<input id="dropdown_b0" type="button" class="dropdown_main" onClick="toggleDropdown(0)" value="C">
-				<div id="dropdown0" class="dropdown_menu">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'C')" value="C">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'C#')" value="C#">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'D')" value="D">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'D# (E♭)')" value="D# (E♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'E')" value="E">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'F')" value="F">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'F#')" value="F#">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'G')" value="G">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'G# (A♭)')" value="G# (A♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'A')" value="A">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'A# (B♭)')" value="A# (B♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(0,'B')" value="B">
-				</div>
-			</div-->
-			<select id="dropdown_0">
-			</select>
-			
-			<textarea id="input_textarea"></textarea>
-		</div>
-		
-		<input id="convert_btn" class="to_be_inline" type="button" value=">>>">
-		
-		<div class="to_be_inline">
-		
-			<!-- this is almost (but not quite) an exact copy of the other dropdown box. is there a better way to do this? -->
-			<!--div class="dropdown_entire">
-				<input id="dropdown_b1" type="button" class="dropdown_main" onClick="toggleDropdown(1)" value="C">
-				<div id="dropdown1" class="dropdown_menu">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'C')" value="C">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'C#')" value="C#">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'D')" value="D">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'D# (E♭)')" value="D# (E♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'E')" value="E">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'F')" value="F">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'F#')" value="F#">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'G')" value="G">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'G# (A♭)')" value="G# (A♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'A')" value="A">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'A# (B♭)')" value="A# (B♭)">
-					<input type="button" class="dropdown_option" onClick="dropdownOptionClicked(1,'B')" value="B">
-				</div>
-			</div-->
-			<select id="dropdown_1">
-			</select>
-			
-			<textarea id="output_textarea" readonly></textarea>
-		</div>
+		<table>
+			<tr>
+				<td><select id="dropdown_0"></select></td>
+				<td><input id="swap_btn" type="button" value="↔"></td>
+				<td><select id="dropdown_1"></select></td>
+			</tr>
+			<tr>
+				<td><textarea id="input_textarea"></textarea></td>
+				<td><input id="convert_btn" type="button" value="→"></td>
+				<td><textarea id="output_textarea" readonly></textarea></td>
+			</tr>
+		</table>
 		
 		<div>
 			<p>

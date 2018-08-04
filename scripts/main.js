@@ -1,23 +1,21 @@
 /*
 	dictionary object that maps keys to numbers (for easy calculations).
 	
-	NOTE TO SELF: TODO: NTS:
-	if it's found that e is actually below f then should change accordingly. make
-	sure code still works because i haven't confirmed it does.
+	if e is found to be below f then change accordingly.
 */
 const keyToNum = 
 {
 	"C": 0,
 	"C#": 1,
 	"D": 2,
-	"D# (E♭)": 3,
+	"D# (Eb)": 3,
 	"E": 4,
 	"F": -7,
 	"F#": -6,
 	"G": -5,
-	"G# (A♭)": -4,
+	"G# (Ab)": -4,
 	"A": -3,
-	"A# (B♭)": -2,
+	"A# (Bb)": -2,
 	"B": -1
 };
 
@@ -55,7 +53,7 @@ const numToNoteKeys = Object.keys(numToNote);
 
 
 /*
-	function activates when you click the button between the two textareas (as of now text is ">>>"
+	function activates when you click the button between the two textareas (as of now text is an arrow pointing right
 	but might change later). this function handles all the good stuff. 
 */
 function convert()
@@ -216,6 +214,22 @@ function convert()
 
 
 
+/*
+	function called when button with double-headed arrow is clicked. swaps contents of the two html
+	select elements.
+*/
+function swap()
+{
+	let i_dd = document.getElementById("dropdown_0");
+	let o_dd = document.getElementById("dropdown_1");
+	let temp = i_dd.value;
+	
+	i_dd.value = o_dd.value;
+	o_dd.value = temp;
+}
+
+
+
 
 
 /*
@@ -224,7 +238,8 @@ function convert()
 */
 window.onload = ()=>
 {
-	//add eventlistener to that button between the two textareas (the one that starts the conversion process).
+	//add eventlistener to buttons
+	document.getElementById("swap_btn").addEventListener("click", swap);
 	document.getElementById("convert_btn").addEventListener("click", convert);
 	
 	

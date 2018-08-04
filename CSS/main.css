@@ -1,54 +1,74 @@
 body
 {
-	background-color: #eeeeee;
+	background-color: #444444;
+	color: white;
 	font-family: "Lucida Sans Unicode";
+	text-align: center;
 }
 
-.to_be_inline
+table
 {
-	display: inline-block;
+	border-spacing: 0px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 textarea
 {
 	height: 200px;
+	width: 400px;
+	background-color: #333333;
+	color: #dddddd;
 }
 
-input.dropdown_main
+textarea:focus,
+textarea:hover
+{
+	color: white;
+}
+
+select
+{
+	width: 406px;
+	font-family: "Lucida Sans Unicode";
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #333333;
+	color: #dddddd;
+	text-align: center;
+	text-align-last: center;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+select:hover,
+select:focus
+{
+	color: white;
+}
+
+select option
+{
+	font-size: 18px;
+	font-weight: normal;
+}
+
+input[type="button"]
 {
 	font-size: 20px;
-}
-
-div.dropdown_menu
-{
-	display: none;
-	position: absolute;
-}
-
-input.dropdown_option
-{
+	color: #dddddd;
 	border: none;
-	display: block;
-	width: 100%;
-	font-size: 15px;
+	background: rgba(0,0,0,0);
 }
 
-input.dropdown_option:hover
+#convert_btn
 {
-	background-color: powderblue;
+	font-size: 30px;
 }
 
-input.dropdown_main,
-div.dropdown_menu,
-input.dropdown_option
+input[type="button"]:hover
 {
-	font-family: "Lucida Sans Unicode";
-}
-
-input.dropdown_main,
-div.dropdown_menu,
-input.dropdown_option,
-textarea
-{
-	width: 400px;
+	color: white;
+	font-weight: bold;
 }
