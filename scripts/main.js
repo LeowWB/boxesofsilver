@@ -49,7 +49,13 @@ const numToNote =
 };
 
 const numToNoteKeys = Object.keys(numToNote);
-
+/*
+	i_		input (left side)
+	o_		output (right side)
+	dd		dropdown (html select tag)
+*/
+const i_dd = document.getElementById("dropdown_0");
+const o_dd = document.getElementById("dropdown_1");
 
 
 /*
@@ -58,16 +64,13 @@ const numToNoteKeys = Object.keys(numToNote);
 */
 function convert()
 {
-	/*
-		i_		input (left side)
-		o_		output (right side)
-		ta		textarea
-		dd		dropdown (html select tag)
-	*/
+    /*
+        i_		input (left side)
+        o_		output (right side)
+        ta		textarea
+    */
 	let i_ta = document.getElementById("input_textarea");
 	let o_ta = document.getElementById("output_textarea");
-	let i_dd = document.getElementById("dropdown_0");
-	let o_dd = document.getElementById("dropdown_1");
 	
 	if (i_ta === null || o_ta === null || i_dd === null || o_dd === null)
 	{
@@ -93,9 +96,9 @@ function convert()
 	let i_notes = [];
 	let rejects = "";
 	
-	const SPACE_NUM = Symbol(-9000);
-	const N_NUM = Symbol(-9001);
-	const TAB_NUM = Symbol(-9002);
+	const SPACE_NUM = Symbol("SPACE");
+	const N_NUM = Symbol("N");
+	const TAB_NUM = Symbol("TAB");
 	
 	for (let i = 0; i < i_str.length; i++)
 	{
@@ -220,33 +223,17 @@ function convert()
 */
 function swap()
 {
-	let i_dd = document.getElementById("dropdown_0");
-	let o_dd = document.getElementById("dropdown_1");
-	let temp = i_dd.value;
-	
-	i_dd.value = o_dd.value;
-	o_dd.value = temp;
+	[i_dd.value, o_dd.value] = [o_dd.value, i_dd.value];
 }
 
 
+//add eventlistener to buttons
+document.getElementById("swap_btn").addEventListener("click", swap);
+document.getElementById("convert_btn").addEventListener("click", convert);
 
 
-
-/*
-	keep this code at the bottom of the js file.
-	code executes when window is fully loaded, i.e html elements have been created and getElementById won't return null.
-*/
-window.onload = ()=>
-{
-	//add eventlistener to buttons
-	document.getElementById("swap_btn").addEventListener("click", swap);
-	document.getElementById("convert_btn").addEventListener("click", convert);
-	
-	
-	//populates html select dropdown boxes via innerhtml
-	let dropdownInner = "<option ";
-	keyToNumKeys.forEach(key => dropdownInner += "value='" + key + "'>" + key + "</option><option ");
-	dropdownInner = dropdownInner.slice(0,-8);
-	document.getElementById("dropdown_0").innerHTML = dropdownInner;
-	document.getElementById("dropdown_1").innerHTML = dropdownInner;
-};
+//populates html select dropdown boxes via the cool new Option api instead of innerHTML
+keyToNumKeys.forEach(key => {
+    i_dd.add(new Option(key));
+    o_dd.add(new Option(key));
+});
