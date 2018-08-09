@@ -1,3 +1,5 @@
+let cssLink = document.getElementById("css_link");
+
 /*
 	dictionary object that maps keys to numbers (for easy calculations).
 	
@@ -56,6 +58,12 @@ const numToNoteKeys = Object.keys(numToNote);
 */
 const i_dd = document.getElementById("dropdown_0");
 const o_dd = document.getElementById("dropdown_1");
+const dnBtn = document.getElementById("day_night_btn");
+
+const NIGHT_MODE_STR = "nightMode";
+const SUN_CHAR = "☼";
+const MOON_CHAR = "☾";
+let nightMode = true;
 
 
 /*
@@ -226,14 +234,43 @@ function swap()
 	[i_dd.value, o_dd.value] = [o_dd.value, i_dd.value];
 }
 
+/*
+	toggles between day mode and night mode.
+*/
+function dayNight()
+{
+	nightMode = !nightMode;
+	applyDayNightMode(nightMode);
+}
+
+function applyDayNightMode(nm)
+{
+	localStorage.setItem(NIGHT_MODE_STR, String(nm));
+	
+	if (nm)
+	{
+		dnBtn.value = SUN_CHAR;
+		cssLink.href = "CSS/main.css";
+	}
+	else
+	{
+		dnBtn.value = MOON_CHAR;
+		cssLink.href = "CSS/day.css";
+	}
+}
+
 
 //add eventlistener to buttons
 document.getElementById("swap_btn").addEventListener("click", swap);
 document.getElementById("convert_btn").addEventListener("click", convert);
-
+dnBtn.addEventListener("click", dayNight);
 
 //populates html select dropdown boxes via the cool new Option api instead of innerHTML
 keyToNumKeys.forEach(key => {
     i_dd.add(new Option(key));
     o_dd.add(new Option(key));
 });
+
+//checks localstorage for preferred mode (day or night) then acts accordingly
+nightMode = (localStorage.getItem(NIGHT_MODE_STR) === "false"? false : true);
+applyDayNightMode(nightMode);

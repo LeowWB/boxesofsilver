@@ -1,9 +1,23 @@
+/*
+	night mode (default css)
+*/
+
 body
 {
 	background-color: #444444;
 	color: white;
 	font-family: "Lucida Sans Unicode";
 	text-align: center;
+}
+
+#day_night_btn
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
 }
 
 table

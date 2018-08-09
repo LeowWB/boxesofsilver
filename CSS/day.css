@@ -1,1 +1,88 @@
-asdf
+/*
+	css for day mode (default is night)
+*/
+
+body
+{
+	background-color: #444444;
+	color: white;
+	font-family: "Lucida Sans Unicode";
+	text-align: center;
+}
+
+#day_night_btn
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+}
+
+table
+{
+	border-spacing: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+textarea
+{
+	height: 200px;
+	width: 400px;
+	background-color: #333333;
+	color: #dddddd;
+}
+
+textarea:focus,
+textarea:hover
+{
+	color: white;
+}
+
+select
+{
+	width: 406px;
+	font-family: "Lucida Sans Unicode";
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #333333;
+	color: #dddddd;
+	text-align: center;
+	text-align-last: center;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+select:hover,
+select:focus
+{
+	color: white;
+}
+
+select option
+{
+	font-size: 18px;
+	font-weight: normal;
+}
+
+input[type="button"]
+{
+	font-size: 20px;
+	color: #dddddd;
+	border: none;
+	background: rgba(0,0,0,0);
+}
+
+#convert_btn
+{
+	font-size: 30px;
+}
+
+input[type="button"]:hover
+{
+	color: white;
+	font-weight: bold;
+}
