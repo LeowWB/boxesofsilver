@@ -1,12 +1,11 @@
 /*
 	css for day mode (default is night)
-	
 */
 
 body
 {
-	background-color: #444444;
-	color: white;
+	background-color: #eeeeee;
+	color: black;
 	font-family: "Lucida Sans Unicode";
 	text-align: center;
 }
@@ -32,14 +31,14 @@ textarea
 {
 	height: 200px;
 	width: 400px;
-	background-color: #333333;
-	color: #dddddd;
+	background-color: #dddddd;
+	color: #111111;
 }
 
 textarea:focus,
 textarea:hover
 {
-	color: white;
+	color: black;
 }
 
 select
@@ -48,8 +47,8 @@ select
 	font-family: "Lucida Sans Unicode";
 	font-size: 20px;
 	font-weight: bold;
-	background-color: #333333;
-	color: #dddddd;
+	background-color: #dddddd;
+	color: #111111;
 	text-align: center;
 	text-align-last: center;
 	appearance: none;
@@ -60,7 +59,7 @@ select
 select:hover,
 select:focus
 {
-	color: white;
+	color: black;
 }
 
 select option
@@ -72,7 +71,7 @@ select option
 input[type="button"]
 {
 	font-size: 20px;
-	color: #dddddd;
+	color: #111111;
 	border: none;
 	background: rgba(0,0,0,0);
 }
@@ -84,6 +83,6 @@ input[type="button"]
 
 input[type="button"]:hover
 {
-	color: white;
+	color: black;
 	font-weight: bold;
 }
